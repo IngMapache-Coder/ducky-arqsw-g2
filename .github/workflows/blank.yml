@@ -1,0 +1,24 @@
+name: Restringir origen de PRs hacia main
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches:
+      - main
+
+jobs:
+  check-source-branch:
+    name: Verificar que el PR venga de develop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validar rama de origen
+        run: |
+          echo "Rama base: ${{ github.event.pull_request.base.ref }}"
+          echo "Rama de origen: ${{ github.event.pull_request.head.ref }}"
+
+          if [ "${{ github.event.pull_request.head.ref }}" != "develop" ]; then
+            echo "::error::Los pull requests hacia main solo pueden venir de la rama develop. Esta rama es '${{ github.event.pull_request.head.ref }}'."
+            exit 1
+          fi
+
+          echo "OK: el PR viene de develop."
