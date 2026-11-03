@@ -2,9 +2,47 @@
 
 **Caso 2 · Arquitectura de Software · UFPS · 2026-II · Grupo 2**
 
-Repositorio del proyecto semestral. **Ducky** es una billetera digital para pagos entre personas y comercios de barrio.
+**Ducky** es una billetera digital para pagos entre personas y comercios de barrio. Este repositorio guarda el código, la prueba y los ADR del segundo previo, esto último mencionado y el resto de la documentación del proyecto vive en la Wiki.
 
 ---
+## ¿Qué se entrega en este previo?
+
+Un recorte del sistema, no la billetera completa: el camino necesario para demostrar con una prueba automatizada un escenario de calidad. El código cubre ms-pagos → ms-ledger, escrito en JavaScript; el diseño completo de microservicios está documentado en la Wiki.
+
+---
+## Escenario elegido
+
+**Escenario 1 — Reintento de transferencia** (atributo: integridad). Un usuario reenvía una transferencia tras un timeout, aunque la original sí se procesó; el sistema debe reconocerla por su clave de idempotencia y no volver a debitar.
+
+**Por qué es el prioritario:** la integridad es el primer atributo del ADR-000 y el caso advierte que perder o duplicar una transacción es un problema legal. Se descartaron el escenario 2 (pago QR en hora pico, menos determinista y cuyo efecto se mide como costo de la táctica) y el 3 (falla de un componente secundario, con la medida de recuperación sin definir). Comparación completa: Wiki · Segundo previo · 1. Comparación de escenarios.
+**Qué mide la prueba:** con 100.000 COP en la cuenta origen, 200 intentos concurrentes de la misma transferencia de 30.000 COP (misma clave de idempotencia, ventana de 1 s) deben dejar exactamente 1 transacción confirmada, saldos finales de 70.000 y 30.000, las 200 respuestas con el mismo transaccion_id, 2 asientos contables y ningún saldo negativo ni inflado en ningún momento (muestreo cada 10 ms). Fuente: Caso 2, sección 4, y ADR-000. Detalle: Wiki · Segundo previo · 2. Medida verificable.
+
+---
+## ¿Cómo ejecutar la prueba?
+
+Requisitos: [PENDIENTE — P4: versión de Node.js e npm install]
+
+|Caso|	Comando|	Resultado esperado|
+|---|---|---|
+|Con la falla activa (sin la táctica)|	[PENDIENTE — P4: comando]	|La prueba falla: se debita más de una vez|
+|Con la táctica aplicada	|[PENDIENTE — P4/P5: comando]	|La prueba pasa|
+
+---
+## Video de sustentación
+
+[PENDIENTE — P6: enlace de YouTube (video oculto, no privado)]
+
+|Integrante|	Qué hizo|	Dónde está|Parte del video|
+|---|---|---|---|
+|Anyela Jhohana Herrera Lobo |Elección del escenario, medida verificable y README|Wiki «Segundo previo»; README.md|1. El escenario|
+|Daniela Alejandra Barreto Ibarra |ADR-002: decisión sobre el modelo de lenguaje, diagrama de la falla y casos de prueba|Wiki «ADR-002»|2. El ADR-002|
+|Laura Isabella Correa Nieto|Estructura del repo, mecanismo de falla y prueba del escenario|test/, package.json|	3. La prueba fallando|
+|Jesús Daniel Lozano Erazo|Táctica aplicada y ADR-003 (decisión y alternativas)|src/, Wiki «ADR-003»|4. La táctica|
+|Josue Daniel Perez Guerrero|Código base, mediciones antes y después, y ADR-003 (costo)|src/, scripts de medición|5. El costo|
+|Diego Sebastian Cuadros Murillo|Vista de contenedores, pendientes y ensamble del video| Wiki «Contenedores»|6. Qué queda pendiente|
+
+---
+## Contexto del caso
 
 ## 1. De qué va el proyecto
 
