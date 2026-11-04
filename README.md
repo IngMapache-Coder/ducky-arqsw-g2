@@ -1,4 +1,4 @@
-# Ducky — Billetera digital de bajo monto
+﻿# Ducky — Billetera digital de bajo monto
 
 **Caso 2 · Arquitectura de Software · UFPS · 2026-II · Grupo 2**
 
@@ -20,12 +20,12 @@ Un recorte del sistema, no la billetera completa: el camino necesario para demos
 ---
 ## ¿Cómo ejecutar la prueba?
 
-Requisitos: [PENDIENTE — P4: versión de Node.js e npm install]
+Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no es necesario).
 
 |Caso|	Comando|	Resultado esperado|
 |---|---|---|
-|Con la falla activa (sin la táctica)|	[PENDIENTE — P4: comando]	|La prueba falla: se debita más de una vez|
-|Con la táctica aplicada	|[PENDIENTE — P4/P5: comando]	|La prueba pasa|
+|Con la falla activa (sin la táctica)|PowerShell: `$env:FALLA_LEDGER="true" ; npm test` · Git Bash: `FALLA_LEDGER=true npm test`|La prueba falla: saldo origen queda negativo por múltiples débitos|
+|Con la táctica aplicada|`npm test`|La prueba pasa: exactamente 1 débito, saldo origen = 70.000 COP|
 
 ---
 ## Video de sustentación
