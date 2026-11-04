@@ -1,4 +1,4 @@
-﻿# Ducky — Billetera digital de bajo monto
+# Ducky — Billetera digital de bajo monto
 
 **Caso 2 · Arquitectura de Software · UFPS · 2026-II · Grupo 2**
 
@@ -24,8 +24,10 @@ Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no 
 
 |Caso|	Comando|	Resultado esperado|
 |---|---|---|
-|Con la falla activa (sin la táctica)|PowerShell: `$env:FALLA_LEDGER="true" ; npm test` · Git Bash: `FALLA_LEDGER=true npm test`|La prueba falla: saldo origen queda negativo por múltiples débitos|
-|Con la táctica aplicada|`npm test`|La prueba pasa: exactamente 1 débito, saldo origen = 70.000 COP|
+|Sin la táctica (vulnerable a duplicación)|PowerShell: `$env:SIN_IDEMPOTENCIA="true" ; npm test` · Bash: `SIN_IDEMPOTENCIA=true npm test`|La prueba falla: saldo origen queda negativo por múltiples débitos concurrentes|
+|Con la táctica aplicada (Idempotencia P5)|`npm test`|La prueba pasa: exactamente 1 débito, saldo origen = 70.000 COP|
+|Con falla de red simulada (P4)|PowerShell: `$env:FALLA_LEDGER="true" ; npm test` · Bash: `FALLA_LEDGER=true npm test`|La prueba pasa: la red simula timeout pero el ledger evita débitos duplicados|
+|Medición de costo empírico (P3/P5)|`npm run medir`|Muestra latencia antes/después y consumo de memoria|
 
 ---
 ## Video de sustentación
@@ -37,8 +39,8 @@ Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no 
 |Anyela Jhohana Herrera Lobo |Elección del escenario, medida verificable y README|Wiki «Segundo previo»; README.md|1. El escenario|
 |Daniela Alejandra Barreto Ibarra |ADR-002: decisión sobre el modelo de lenguaje, diagrama de la falla y casos de prueba|Wiki «ADR-002»|2. El ADR-002|
 |Laura Isabella Correa Nieto|Estructura del repo, mecanismo de falla y prueba del escenario|test/, package.json|	3. La prueba fallando|
-|Jesús Daniel Lozano Erazo|Táctica aplicada y ADR-003 (decisión y alternativas)|src/, Wiki «ADR-003»|4. La táctica|
-|Josue Daniel Perez Guerrero|Código base, mediciones antes y después, y ADR-003 (costo)|src/, scripts de medición|5. El costo|
+|Jesús Daniel Lozano Erazo|Táctica aplicada y ADR-003 (decisión y alternativas)|src/ledger.js, docs/adr/ADR-003.md|4. La táctica|
+|Josue Daniel Perez Guerrero|Código base, mediciones antes y después, y ADR-003 (costo)|src/, test/medicion.js|5. El costo|
 |Diego Sebastian Cuadros Murillo|Vista de contenedores, pendientes y ensamble del video| Wiki «Contenedores»|6. Qué queda pendiente|
 
 ---
