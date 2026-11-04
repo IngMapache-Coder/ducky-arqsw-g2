@@ -27,7 +27,9 @@ Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no 
 |Sin la táctica (vulnerable a duplicación)|PowerShell: `$env:SIN_IDEMPOTENCIA="true" ; npm test` · Bash: `SIN_IDEMPOTENCIA=true npm test`|La prueba falla: saldo origen queda negativo por múltiples débitos concurrentes|
 |Con la táctica aplicada (Idempotencia P5)|`npm test`|La prueba pasa: exactamente 1 débito, saldo origen = 70.000 COP|
 |Con falla de red simulada (P4)|PowerShell: `$env:FALLA_LEDGER="true" ; npm test` · Bash: `FALLA_LEDGER=true npm test`|La prueba pasa: la red simula timeout pero el ledger evita débitos duplicados|
-|Medición de costo empírico (P3/P5)|`npm run medir`|Muestra latencia antes/después y consumo de memoria|
+|Medición comparativa (P3/P5)|`pnpm run medir` (o `npm run medir`)|Muestra comparativa antes/después, latencia y memoria|
+|Medición CON idempotencia|`pnpm run medir:con` (o `npm run medir:con`)|Mide solo con la táctica activa (1 débito, 2 asientos)|
+|Medición SIN idempotencia|`pnpm run medir:sin` (o `npm run medir:sin`)|Mide el impacto de la condición de carrera (200 débitos)|
 
 ---
 ## Video de sustentación

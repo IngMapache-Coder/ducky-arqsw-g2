@@ -5,6 +5,8 @@
   "scripts": {
     "test": "node --test test/escenario.test.js",
     "escenario": "node --test test/escenario.test.js",
-    "medir": "node test/medicion.js"
+    "medir": "node test/medicion.js",
+    "medir:con": "node test/medicion.js --con",
+    "medir:sin": "node test/medicion.js --sin"
   }
 }
