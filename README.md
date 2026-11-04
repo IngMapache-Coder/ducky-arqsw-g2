@@ -24,12 +24,12 @@ Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no 
 
 |Caso|	Comando|	Resultado esperado|
 |---|---|---|
-|Sin la táctica (vulnerable a duplicación)|PowerShell: `$env:SIN_IDEMPOTENCIA="true" ; npm test` · Bash: `SIN_IDEMPOTENCIA=true npm test`|La prueba falla: saldo origen queda negativo por múltiples débitos concurrentes|
-|Con la táctica aplicada (Idempotencia P5)|`npm test`|La prueba pasa: exactamente 1 débito, saldo origen = 70.000 COP|
-|Con falla de red simulada (P4)|PowerShell: `$env:FALLA_LEDGER="true" ; npm test` · Bash: `FALLA_LEDGER=true npm test`|La prueba pasa: la red simula timeout pero el ledger evita débitos duplicados|
-|Medición comparativa (P3/P5)|`pnpm run medir` (o `npm run medir`)|Muestra comparativa antes/después, latencia y memoria|
-|Medición CON idempotencia|`pnpm run medir:con` (o `npm run medir:con`)|Mide solo con la táctica activa (1 débito, 2 asientos)|
-|Medición SIN idempotencia|`pnpm run medir:sin` (o `npm run medir:sin`)|Mide el impacto de la condición de carrera (200 débitos)|
+|Prueba CON la táctica (Oficial P5)|`pnpm test` (o `pnpm run test:con`)|La prueba pasa en VERDE: exactamente 1 débito, saldo origen = 70.000 COP|
+|Prueba SIN la táctica (Vulnerable)|`pnpm run test:sin`|La prueba falla en ROJO: saldo negativo (-5.900.000 COP) por carrera|
+|Prueba con falla de red (Timeout P4)|`pnpm run test:falla`|La prueba pasa: red simula timeout pero el ledger evita débitos duplicados|
+|Medición comparativa (P3/P5)|`pnpm run medir`|Muestra comparativa antes/después, latencia y memoria|
+|Medición únicamente CON idempotencia|`pnpm run medir:con`|Mide latencia y memoria con la táctica activa (1 débito, 2 asientos)|
+|Medición únicamente SIN idempotencia|`pnpm run medir:sin`|Mide latencia y débitos duplicados de la versión vulnerable (200 débitos)|
 
 ---
 ## Video de sustentación

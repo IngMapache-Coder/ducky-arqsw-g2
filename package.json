@@ -4,6 +4,9 @@
   "description": "Prueba de idempotencia — Caso 2 Billetera Digital · Arquitectura de Software UFPS 2026-II",
   "scripts": {
     "test": "node --test test/escenario.test.js",
+    "test:con": "node --test test/escenario.test.js",
+    "test:sin": "node test/correr-sin.js",
+    "test:falla": "node test/correr-falla.js",
     "escenario": "node --test test/escenario.test.js",
     "medir": "node test/medicion.js",
     "medir:con": "node test/medicion.js --con",
