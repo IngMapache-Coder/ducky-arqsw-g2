@@ -34,7 +34,7 @@ Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no 
 ---
 ## Video de sustentación
 
-[PENDIENTE — P6: enlace de YouTube (video oculto, no privado)]
+P6:[(https://youtu.be/NHfZRwCWCtc)](https://youtu.be/NHfZRwCWCtc)
 
 |Integrante|	Qué hizo|	Dónde está|Parte del video|
 |---|---|---|---|
