@@ -43,7 +43,7 @@ Requisitos: Node.js v20 o superior. Sin dependencias externas (`npm install` no 
 |Laura Isabella Correa Nieto|Estructura del repo, mecanismo de falla y prueba del escenario|test/, package.json|	3. La prueba fallando|
 |Jesús Daniel Lozano Erazo|Táctica aplicada y ADR-003 (decisión y alternativas)|src/ledger.js, docs/adr/ADR-003.md|4. La táctica|
 |Josue Daniel Perez Guerrero|Código base, mediciones antes y después, y ADR-003 (costo)|src/, test/medicion.js|5. El costo|
-|Diego Sebastian Cuadros Murillo|Vista de contenedores, pendientes y ensamble del video| Wiki «Contenedores»|6. Qué queda pendiente|
+|Diego Sebastian Cuadros Murillo|Vista de contenedores, pendientes y ensamble del video| docs/contenedores.md, docs/adr/ADR-001.md|6. Qué queda pendiente|
 
 ---
 ## Contexto del caso
